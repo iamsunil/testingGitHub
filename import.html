@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!--[metadata]>
++++
+title = "import"
+description = "The import command description and usage"
+keywords = ["import, file, system, container"]
+[menu.main]
+parent = "smn_cli"
++++
+<![end-metadata]-->
+
+<h1 id="import">import</h1>
+<pre><code>Usage: docker import file|URL|- [REPOSITORY[:TAG]]
+
+Create an empty filesystem image and import the contents of the
+tarball (.tar, .tar.gz, .tgz, .bzip, .tar.xz, .txz) into it, then
+optionally tag it.
+
+  -c, --change=[]     Apply specified Dockerfile instructions while importing the image
+  --help              Print usage
+  -m, --message=      Set commit message for imported image</code></pre>
+<p>You can specify a <code>URL</code> or <code>-</code> (dash) to take data directly from <code>STDIN</code>. The <code>URL</code> can point to an archive (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) containing a filesystem or to an individual file on the Docker host. If you specify an archive, Docker untars it in the container relative to the <code>/</code> (root). If you specify an individual file, you must specify the full path within the host. To import from a remote location, specify a <code>URI</code> that begins with the <code>http://</code> or <code>https://</code> protocol.</p>
+<p>The <code>--change</code> option will apply <code>Dockerfile</code> instructions to the image that is created. Supported <code>Dockerfile</code> instructions: <code>CMD</code>|<code>ENTRYPOINT</code>|<code>ENV</code>|<code>EXPOSE</code>|<code>ONBUILD</code>|<code>USER</code>|<code>VOLUME</code>|<code>WORKDIR</code></p>
+<h2 id="examples">Examples</h2>
+<p><strong>Import from a remote location:</strong></p>
+<p>This will create a new untagged image.</p>
+<pre><code>$ docker import http://example.com/exampleimage.tgz</code></pre>
+<p><strong>Import from a local file:</strong></p>
+<p>Import to docker via pipe and <code>STDIN</code>.</p>
+<pre><code>$ cat exampleimage.tgz | docker import - exampleimagelocal:new</code></pre>
+<p>Import with a commit message.</p>
+<pre><code>$ cat exampleimage.tgz | docker import --message &quot;New image imported from tarball&quot; - exampleimagelocal:new</code></pre>
+<p>Import to docker from a local archive.</p>
+<pre><code>$ docker import /path/to/exampleimage.tgz</code></pre>
+<p><strong>Import from a local directory:</strong></p>
+<pre><code>$ sudo tar -c . | docker import - exampleimagedir</code></pre>
+<p><strong>Import from a local directory with new configurations:</strong></p>
+<pre><code>$ sudo tar -c . | docker import --change &quot;ENV DEBUG true&quot; - exampleimagedir</code></pre>
+<p>Note the <code>sudo</code> in this example – you must preserve the ownership of the files (especially root ownership) during the archiving with tar. If you are not root (or the sudo command) when you tar, then the ownerships might not get preserved.</p>
+</body>
+</html>

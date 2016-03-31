@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!--[metadata]>
++++
+title = "export"
+description = "The export command description and usage"
+keywords = ["export, file, system, container"]
+[menu.main]
+parent = "smn_cli"
++++
+<![end-metadata]-->
+
+<h1 id="export">export</h1>
+<pre><code>Usage: docker export [OPTIONS] CONTAINER
+
+Export the contents of a container&#39;s filesystem as a tar archive
+
+  --help             Print usage
+  -o, --output=&quot;&quot;    Write to a file, instead of STDOUT</code></pre>
+<p>The <code>docker export</code> command does not export the contents of volumes associated with the container. If a volume is mounted on top of an existing directory in the container, <code>docker export</code> will export the contents of the <em>underlying</em> directory, not the contents of the volume.</p>
+<p>Refer to <a href="../../userguide/containers/dockervolumes.md#backup-restore-or-migrate-data-volumes">Backup, restore, or migrate data volumes</a> in the user guide for examples on exporting data in a volume.</p>
+<h2 id="examples">Examples</h2>
+<pre><code>$ docker export red_panda &gt; latest.tar</code></pre>
+<p>Or</p>
+<pre><code>$ docker export --output=&quot;latest.tar&quot; red_panda</code></pre>
+</body>
+</html>
