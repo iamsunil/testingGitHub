@@ -1,13 +1,12 @@
-<!--[metadata]>
-+++
-title = "commit"
-description = "The commit command description and usage"
-keywords = ["commit, file, changes"]
-[menu.main]
-parent = "smn_cli"
-+++
-<![end-metadata]-->
-
+---
+title: "commit"
+description: "The commit command description and usage"
+keywords: 
+	-commit 
+	-file 
+	-changes
+parent: "smn_cli"
+...
 # commit
 
     Usage: docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]

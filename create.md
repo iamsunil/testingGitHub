@@ -1,7 +1,10 @@
 ---
 title: "create"
 description: "The create command description and usage"
-keywords: "docker, create, container"
+keywords: 
+ -docker
+ -create 
+ -container
 parent: "smn_cli"
 ...
 
